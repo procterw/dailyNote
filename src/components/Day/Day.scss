@@ -1,0 +1,49 @@
+.day {
+  width: 14.28%;
+  display: inline-block;
+  overflow: hidden;
+  height: 80px;
+  padding: 0 2px;
+  box-sizing: border-box;
+
+  .content {
+    background: #eee;
+    height: 100%;
+  }
+
+}
+
+.day.first-day {
+
+  &.monday {
+    margin-left: 14.28%;
+  }
+
+  &.tuesday {
+    margin-left: 28.56%;
+  }
+
+  &.wednesday {
+    margin-left: 42.8%;
+  }
+
+  &.thursday {
+    margin-left: 57.12%;
+  }
+
+  &.friday {
+    margin-left: 71.4%;
+  }
+
+  &.saturday {
+    margin-left: 85.68%;
+  }
+
+}
+
+
+
+
+.day.today {
+  background: lavender;
+}

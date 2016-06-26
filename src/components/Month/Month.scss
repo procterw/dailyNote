@@ -2,17 +2,3 @@
   width: 700px;
   margin: 0 auto;
 }
-
-.day {
-  background: #eee;
-  width: 14.28%;
-  display: inline-block;
-  overflow: hidden;
-  height: 80px;
-  box-sizing: border-box;
-  padding: 2px;
-}
-
-.day.today {
-  background: lavender;
-}

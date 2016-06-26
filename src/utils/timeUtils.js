@@ -47,7 +47,7 @@ class Day {
 
 	constructor(year, month, day) {
 
-		let date = new Date();
+		let date = new Date(`${month+1}/${day+1}/${year}`);
 
 		this.year = year;
 		this.month = month;
@@ -73,7 +73,7 @@ function monthNumberToString(i) {
 }
 
 function dayOfWeekString(i) {
-	return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][i];
+	return ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"][i];
 }
 
 function isCurrentMonth(date, year, month) {
