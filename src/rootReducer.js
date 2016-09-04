@@ -1,42 +1,47 @@
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux';
+
+// import userReducer from './components/Navbar/NavbarReducer.js';
+import wallReducer from './components/Wall/WallReducer.js';
+import calendarReducer from './components/Calendar/CalendarReducer.js';
+
 
 const initialState = {
-  activeYear: "2016",
-  calendar: {
-    months: []
-  },
-  username: "Will",
-  notes: [
-    {
-      year: 2016,
-      month: 0,
-      day: 0,
-      content: ""
-    },
-    {
-      year: 2016,
-      month: 0,
-      day: 0,
-      content: ""
-    }
-  ]
-}
+
+  accessToken: "",
+  name: "",
+  photoUrl: "",
+  userID: "",
+  isAuthenticated: false
+
+};
 
 function rootReducer(state = initialState, action) {
 
   switch(action.type) {
 
-    case "SET_YEAR":
+    case "FACEBOOK_RESPONSE":
+      console.log(action)
       return Object.assign({}, state, {
-        activeYear: action.year
+        accessToken: action.response.accessToken,
+        name: action.response.name,
+        photoUrl: action.response.picture.data.url,
+        userID: action.response.userID
       });
 
-    case "NEW_CALENDAR":
+    case "AWS_RESPONSE":
       return Object.assign({}, state, {
-        calendar: action.calendar
+        isAuthenticated: action.isAuthenticated
       });
+
   }
 
   return state;
 }
 
-export default rootReducer;
+export default combineReducers({
+  root: rootReducer,
+  routing: routerReducer,
+  wall: wallReducer,
+  calendar: calendarReducer
+});

@@ -16,6 +16,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
+  node: {
+    console: true
+  },
   module: {
     loaders: [
       {

@@ -1,0 +1,24 @@
+
+import { configCredentials } from '../../utils/awsUtils.js';
+
+export function facebookResponse(response) {
+
+	return (dispatch, getState) => {
+
+		dispatch({
+			type: "FACEBOOK_RESPONSE",
+			response
+		});
+
+		configCredentials(response.accessToken, () => {
+
+			dispatch({
+				type: "AWS_RESPONSE",
+				isAuthenticated: true
+			});
+
+		});
+
+	}
+
+}

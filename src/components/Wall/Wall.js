@@ -1,16 +1,16 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Note from '../../components/Note/Note.js';
+import Wall from './WallComponent.js';
 
-import * as actions from './NoteActions.js';
+import * as actions from './WallActions.js';
 
 function mapStateToProps(state) {
-	return state;
+	return state.wall;
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Note);
+export default connect(mapStateToProps, mapDispatchToProps)(Wall);

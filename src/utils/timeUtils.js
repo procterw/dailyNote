@@ -3,8 +3,9 @@
 export class Calendar {
 
 	// Build a calendar for the given year
-	constructor(year) {
+	constructor(year, activeCalendar, notes) {
 		this.year = year;
+		this.activeCalendar = activeCalendar;
 		this.months = [0,1,2,3,4,5,6,7,8,9,10,11].map(n => {
 			return new Month(year, n);
 		});
@@ -82,4 +83,12 @@ function isCurrentMonth(date, year, month) {
 
 function isToday(date, year, month, day) {
 	return isCurrentMonth(date, year, month) && date.getDate() == day
+}
+
+function formatDate(year, month, day) {
+
+}
+
+function add0s(n, zeros) {
+
 }

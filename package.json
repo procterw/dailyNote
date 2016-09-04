@@ -45,11 +45,15 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "aws-sdk": "^2.4.9",
     "draft-js": "^0.7.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.1",
-    "redux": "^3.5.2"
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2",
+    "redux-auth": "0.0.2",
+    "request": "^2.73.0"
   }
 }

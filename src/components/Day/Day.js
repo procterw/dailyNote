@@ -2,10 +2,17 @@ import React from 'react';
 
 require("./Day.scss");
 
+import { browserHistory } from 'react-router';
+
+
 class Day extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  onClick(day) {
+    browserHistory.push(`/note/${day.year}`);
   }
 
   render() {
@@ -19,7 +26,7 @@ class Day extends React.Component {
 
     return(
       <div className={dayClass}>
-        <div className="content">
+        <div className="content" onClick={this.onClick.bind(this, day)}>
           {day.dayOfMonth}
         </div>
       </div>

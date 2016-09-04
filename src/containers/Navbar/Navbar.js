@@ -1,16 +1,16 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Calendar from './CalendarComponent.js';
+import Navbar from './NavbarComponent.js';
 
-import * as actions from './CalendarActions.js';
+import * as actions from './NavbarActions.js';
 
 function mapStateToProps(state) {
-	return state.calendar;
+	return state.root;
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

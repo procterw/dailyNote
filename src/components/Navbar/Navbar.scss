@@ -1,0 +1,17 @@
+.navbar-component {
+  width: 100%;
+  background: #ddd;
+  margin-bottom: 20px;
+
+  .right {
+    float: right;
+    text-align: right;
+  }
+
+  .profile-picture {
+    width: 50px;
+    border-radius: 50px;
+    float: right;
+    vertical-align: middle
+  }
+}

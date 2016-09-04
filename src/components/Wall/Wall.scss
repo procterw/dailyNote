@@ -1,0 +1,37 @@
+
+.wall-component {
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+    }
+  }
+
+  .calendar-list {
+
+    li {
+      display: inline-block;
+      padding: 5px 7px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+  }
+
+  .year-list {
+
+    li {
+      padding: 5px 7px;
+    }
+
+    li.active {
+      background: grey;
+      color: white;
+    }
+  }
+}

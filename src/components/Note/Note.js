@@ -1,56 +1,18 @@
-import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import {Editor, EditorState, RichUtils} from 'draft-js';
-// require("./Note.scss");
+import Note from './NoteComponent.js';
 
-class Note extends React.Component {
+import './Note.scss';
 
-  constructor(props) {
-    super(props);
-  }
+import * as actions from './NoteActions.js';
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
-  render() {
-    return (
-      <div>
-      NOTEEEE
-      </div>
-    )
-  }
-
+function mapStateToProps(state) {
+	return state;
 }
 
-class TextEditor extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
-  }
-
-  handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-    if (newState) {
-      this.onChange(newState);
-      return true;
-    }
-    return false;
-  }
-
-  render() {
-    return (
-      <Editor
-        editorState={this.state.editorState}
-        handleKeyCommand={this.handleKeyCommand}
-        onChange={this.onChange}
-      />
-    );
-  }
-
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(actions, dispatch);
 }
 
-export default Note;
+export default connect(mapStateToProps, mapDispatchToProps)(Note);
