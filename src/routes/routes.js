@@ -11,7 +11,7 @@ export default (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="calendar(/:activeYear)(/:activeCalendar)" component={requireAuthentication(Wall)}/>
-      <Route path="note/:day" component={Note}/>
+      <Route path="note/:day/:calendar" component={Note}/>
     </Route>
   </Router>
 );

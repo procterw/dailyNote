@@ -9,14 +9,20 @@ class Note extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log(this.props);
+  componentWillMount() {
+    this.props.loadNote(this.props.params.day);
+  }
+
+  save(content) {
+    this.props.saveNote(JSON.stringify(content), this.props.params.day);
   }
 
   render() {
     return (
-      <div>
-        <TextEditor inputChange={this.inputChange}></TextEditor>
+      <div className="note-component">
+        { this.props.noteLoading ? "NOTE LOADING" :
+        <TextEditor editorState={this.props.editorState}
+          save={this.save.bind(this)}/> }
       </div>
     )
   }
@@ -27,12 +33,30 @@ class TextEditor extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    this.state = {
+      editorState: this.props.editorState,
+      lastSaved: undefined
+    };
     this.onChange = (editorState) => {
-      console.log(convertToRaw(editorState.getCurrentContent()))
+      console.log(editorState)
       this.setState({editorState})
+      this.save();
     };
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({editorState: newProps.editorState});
+  }
+
+  save() {
+    const lastSaved = this.state.lastSaved;
+    if (_.isUndefined(this.state.lastSaved)) {
+      this.setState({lastSaved: new Date()});
+    } else if ((new Date()) - this.state.lastSaved > 3000) {
+      this.setState({lastSaved: new Date()});
+      this.props.save(convertToRaw(this.state.editorState.getCurrentContent()));
+    }
   }
 
   handleKeyCommand(command) {
@@ -57,15 +81,3 @@ class TextEditor extends React.Component {
 }
 
 export default Note;
-
-// 
-//
-// console.error = (function() {
-//     var error = console.error
-//
-//     return function(exception) {
-//         if ((exception + '').indexOf('Warning: A component is `contentEditable`') != 0) {
-//             error.apply(console, arguments)
-//         }
-//     }
-// })()

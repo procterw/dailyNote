@@ -6,17 +6,15 @@ export function requireAuthentication(Component) {
   class AuthenticatedComponent extends React.Component {
 
     componentWillMount() {
-      // console.log(this.props);
-      // console.log("authhh")
+
     }
 
     render () {
-      // console.log("rendinger")
       return (
         <div>
           {this.props.isAuthenticated === true
               ? <Component {...this.props}/>
-              : <div>Loadinggggg</div>
+              : <div>Not Authenticated, maybe loading?</div>
           }
         </div>
       )

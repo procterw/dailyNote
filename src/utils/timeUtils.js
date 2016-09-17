@@ -7,7 +7,7 @@ export class Calendar {
 		this.year = year;
 		this.activeCalendar = activeCalendar;
 		this.months = [0,1,2,3,4,5,6,7,8,9,10,11].map(n => {
-			return new Month(year, n);
+			return new Month(year, n, activeCalendar);
 		});
 	}
 
@@ -21,18 +21,20 @@ export class Calendar {
 class Month {
 
 	// Year and month number, 0-11
-	constructor(year, month) {
+	constructor(year, month, activeCalendar) {
 
 		let date = new Date();
 
 		this.year = year;
+		this.activeCalendar = activeCalendar;
+
 		this.month = month;
 		this.monthString = monthNumberToString(month);
 		this.nDays = daysInMonth(year, month);
 
 		this.days = [];
 		for (let i=0; i<this.nDays; i++) {
-			this.days.push(new Day(year, month, i));
+			this.days.push(new Day(year, month, i, activeCalendar));
 		}
 
 		this.isCurrentMonth = isCurrentMonth(date, year, month);
@@ -46,11 +48,14 @@ class Month {
 
 class Day {
 
-	constructor(year, month, day) {
+	constructor(year, month, day, activeCalendar) {
 
 		let date = new Date(`${month+1}/${day+1}/${year}`);
 
+		this.ISO = date.toISOString().substr(0,10).replace(/-/g,"");
+
 		this.year = year;
+		this.activeCalendar = activeCalendar;
 		this.month = month;
 		this.monthString = monthNumberToString(month);
 

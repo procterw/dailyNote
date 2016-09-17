@@ -12,7 +12,7 @@ class Day extends React.Component {
   }
 
   onClick(day) {
-    browserHistory.push(`/note/${day.year}`);
+    browserHistory.push(`/note/${day.ISO}/${day.activeCalendar}`);
   }
 
   render() {

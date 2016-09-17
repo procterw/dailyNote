@@ -7,6 +7,10 @@ export function loadCalendars() {
 
 	return (dispatch, getState) => {
 
+		dispatch({
+			type: "CALENDAR_LIST_LOADING"
+		});
+
 		Lambda({
       FunctionName: "DailyNote",
 			Payload: JSON.stringify({
@@ -18,6 +22,8 @@ export function loadCalendars() {
 			if (err) {
 				console.error(err);
 			} else {
+
+				console.log(response)
 
 				dispatch({
 					type: "CALENDAR_LIST_SUCCESS",

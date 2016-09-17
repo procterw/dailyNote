@@ -19,13 +19,11 @@ export function loadNotes() {
 }
 
 // Make a calendar for the given year
-export function buildCalendar(year, calendar) {
+export function buildCalendar(year, activeCalendar) {
 
 	return (dispatch, getState) => {
 
-		let calendar = new Calendar(year, calendar, []);
-
-		console.log(calendar)
+		let calendar = new Calendar(year, activeCalendar, []);
 
 		dispatch({
 			type: "NEW_CALENDAR",

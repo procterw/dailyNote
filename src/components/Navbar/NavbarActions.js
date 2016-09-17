@@ -1,7 +1,10 @@
 
+import axios from 'axios';
 import { configCredentials } from '../../utils/awsUtils.js';
 
 export function facebookResponse(response) {
+
+	console.log(response)
 
 	return (dispatch, getState) => {
 

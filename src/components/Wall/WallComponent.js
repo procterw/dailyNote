@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import { Link } from 'react-router';
 
@@ -39,8 +40,15 @@ class Wall extends React.Component {
     const activeYear = this.props.params.activeYear;
     const yearOptions = this.props.yearOptions;
     const activeCalendar = this.props.params.activeCalendar;
+    const calendarListLoading = this.props.calendarListLoading;
 
-    return (
+    if (calendarListLoading) {
+      return <div>"LOADING"</div>;
+    } else if (calendars.filter(c => c.title === activeCalendar).length === 0 &&
+      !_.isUndefined(activeCalendar)) {
+      return <div>"Calendar not found"</div>
+    } else {
+      return (
       <div className="wall-component">
         <ul className="calendar-list">
           { calendars.map(calendar => {
@@ -64,16 +72,17 @@ class Wall extends React.Component {
               <li
                 key={year}
                 className={year == activeYear ? "active" : ""}>
-                <Link to={`/calendar/${year}/${activeCalendar}`}>{year}</Link>
+                <Link to={`/calendar/${year}/${activeCalendar || ""}`}>{year}</Link>
               </li>
             )
           })}
         </ul>
 
-          <Calendar activeYear={activeYear} activeCalendar={activeCalendar}></Calendar>
+        <Calendar activeYear={activeYear} activeCalendar={activeCalendar}></Calendar>
 
       </div>
-    );
+      )
+    }
   }
 }
 

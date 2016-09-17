@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 // import userReducer from './components/Navbar/NavbarReducer.js';
 import wallReducer from './components/Wall/WallReducer.js';
 import calendarReducer from './components/Calendar/CalendarReducer.js';
-
+import noteReducer from './components/Note/NoteReducer.js';
 
 const initialState = {
 
@@ -43,5 +43,6 @@ export default combineReducers({
   root: rootReducer,
   routing: routerReducer,
   wall: wallReducer,
+  note: noteReducer,
   calendar: calendarReducer
 });

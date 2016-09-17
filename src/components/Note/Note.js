@@ -8,7 +8,7 @@ import './Note.scss';
 import * as actions from './NoteActions.js';
 
 function mapStateToProps(state) {
-	return state;
+	return state.note;
 }
 
 function mapDispatchToProps(dispatch) {
