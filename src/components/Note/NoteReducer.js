@@ -14,6 +14,12 @@ export default function noteReducer(state = initialState, action) {
 
   switch(action.type) {
 
+    case "CLEAR_NOTE":
+      return {
+        ...state,
+        editorState: EditorState.createEmpty()
+      }
+
     case "LOAD_NOTE_PENDING":
       return {
         ...state,

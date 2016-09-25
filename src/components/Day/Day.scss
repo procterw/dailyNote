@@ -42,7 +42,12 @@
 }
 
 
-
+.day.has-note {
+  .content {
+    background: wheat;
+    color: white;
+  }
+}
 
 .day.today {
   background: lavender;

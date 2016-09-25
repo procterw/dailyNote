@@ -3,9 +3,8 @@ import { routerReducer } from 'react-router-redux';
 
 
 const initialState = {
-
-  calendar: []
-
+  calendar: [],
+  notes: []
 }
 
 export default function calendarReducer(state = initialState, action) {
@@ -13,9 +12,16 @@ export default function calendarReducer(state = initialState, action) {
   switch(action.type) {
 
     case "NEW_CALENDAR":
-      return Object.assign({}, state, {
+      return {
+        ...state,
         calendar: action.calendar
-      });
+      };
+
+    case "SET_NOTES":
+      return {
+        ...state,
+        notes: action.notes
+      };
 
   }
 

@@ -14,7 +14,7 @@ export function loadCalendars() {
 		Lambda({
       FunctionName: "DailyNote",
 			Payload: JSON.stringify({
-				operation: "scan",
+				operation: "query",
 				type: "calendar"
 			})
 		}, (err, response) => {

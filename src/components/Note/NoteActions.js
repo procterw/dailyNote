@@ -1,9 +1,13 @@
 import { Lambda } from '../../utils/awsUtils.js';
 
+export function clearNote() {
+	return {
+		type: "CLEAR_NOTE"
+	};
+}
+
 // Make a calendar for the given year
 export function loadNote(date) {
-
-	console.log("loading note")
 
 	return (dispatch, getState) => {
 

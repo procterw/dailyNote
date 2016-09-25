@@ -10,6 +10,7 @@ class Note extends React.Component {
   }
 
   componentWillMount() {
+    this.props.clearNote();
     this.props.loadNote(this.props.params.day);
   }
 

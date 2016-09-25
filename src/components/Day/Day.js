@@ -22,6 +22,7 @@ class Day extends React.Component {
     let dayClass = "day";
     dayClass += day.isToday ? " today" : "";
     dayClass += day.dayOfMonth === 0 ? " first-day" : "";
+    dayClass += day.hasNote ? " has-note" : "";
     dayClass += (" " + day.dayOfWeekString);
 
     return(

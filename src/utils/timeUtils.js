@@ -3,11 +3,16 @@
 export class Calendar {
 
 	// Build a calendar for the given year
-	constructor(year, activeCalendar, notes) {
+	constructor(year, activeCalendar, notes = []) {
+
+		this.notes = notes.filter(note => {
+			return +year === parseDDBYear(note.date)
+		});
+
 		this.year = year;
 		this.activeCalendar = activeCalendar;
 		this.months = [0,1,2,3,4,5,6,7,8,9,10,11].map(n => {
-			return new Month(year, n, activeCalendar);
+			return new Month(year, n, activeCalendar, this.notes);
 		});
 	}
 
@@ -21,9 +26,11 @@ export class Calendar {
 class Month {
 
 	// Year and month number, 0-11
-	constructor(year, month, activeCalendar) {
+	constructor(year, month, activeCalendar, notes = []) {
 
-		let date = new Date();
+		this.notes = notes.filter(note => {
+			return +month === parseDDBMonth(note.date);
+		});
 
 		this.year = year;
 		this.activeCalendar = activeCalendar;
@@ -34,8 +41,10 @@ class Month {
 
 		this.days = [];
 		for (let i=0; i<this.nDays; i++) {
-			this.days.push(new Day(year, month, i, activeCalendar));
+			this.days.push(new Day(year, month, i, activeCalendar, this.notes));
 		}
+
+		let date = new Date(`${month+1}/${1}/${year}`)
 
 		this.isCurrentMonth = isCurrentMonth(date, year, month);
 	}
@@ -48,7 +57,15 @@ class Month {
 
 class Day {
 
-	constructor(year, month, day, activeCalendar) {
+	constructor(year, month, day, activeCalendar, notes = []) {
+
+		let filteredNotes = notes.filter(note => {
+			return +day === parseDDBDay(note.date);
+		});
+
+		this.note = filteredNotes[0] || null;
+
+		this.hasNote = filteredNotes.length > 0;
 
 		let date = new Date(`${month+1}/${day+1}/${year}`);
 
@@ -96,4 +113,16 @@ function formatDate(year, month, day) {
 
 function add0s(n, zeros) {
 
+}
+
+function parseDDBYear(date) {
+	return +date.substr(0,4);
+}
+
+function parseDDBMonth(date) {
+	return +date.substr(4,2) - 1;
+}
+
+function parseDDBDay(date) {
+	return +date.substr(6,2) - 1;
 }

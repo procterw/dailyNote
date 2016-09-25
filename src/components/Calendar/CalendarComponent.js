@@ -10,9 +10,10 @@ class Calendar extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
 
-    this.props.buildCalendar(this.props.activeYear, this.props.activeCalendar);
+    this.props.loadNotes(this.props.activeYear, this.props.activeCalendar);
+    // this.props.buildCalendar(this.props.activeYear, this.props.activeCalendar);
 
   }
 
@@ -24,7 +25,7 @@ class Calendar extends React.Component {
     let calendarDidChange = newProps.activeCalendar !== oldProps.activeCalendar;
 
     if (yearDidChange || calendarDidChange) {
-        this.props.buildCalendar(newProps.activeYear, newProps.activeCalendar);
+        this.props.buildCalendar(newProps.activeYear, newProps.activeCalendar, newProps.notes);
     }
 
   }
