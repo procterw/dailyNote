@@ -28,7 +28,7 @@ class Day extends React.Component {
     return(
       <div className={dayClass}>
         <div className="content" onClick={this.onClick.bind(this, day)}>
-          {day.dayOfMonth}
+          <span className="day-of-month">{day.dayOfMonth}</span>
         </div>
       </div>
     )

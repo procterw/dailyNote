@@ -58,7 +58,7 @@ export function loadNotes() {
 export function updateYear(year) {
 	return {
 		type: "UPDATE_YEAR",
-		yearOptions: makeYearOptions(year)
+		yearOptions: makeYearOptions(year, 3)
 	}
 }
 
@@ -69,13 +69,13 @@ export function setCalendar(calendar) {
 	}
 }
 
-function makeYearOptions(year) {
+function makeYearOptions(year, n) {
 
   year = +year;
 
   var options = [];
 
-  for (var i=year-5; i<=year+5; i++) {
+  for (var i=year-n; i<=year+n; i++) {
     options.push(i);
   }
 

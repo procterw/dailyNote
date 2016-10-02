@@ -1,9 +1,22 @@
+
+import { quantile } from 'd3';
+
 // Useful functions for parsing time and making calendars
 
 export class Calendar {
 
 	// Build a calendar for the given year
 	constructor(year, activeCalendar, notes = []) {
+
+		let lengths = notes.map(note => note.length);
+
+		let quantiles = {
+			lower: 	quantile(lengths, 0.25),
+			mid: 		quantile(lengths, 0.5),
+			upper:  quantile(lengths, 0.75)
+		};
+
+		console.log(quantiles)
 
 		this.notes = notes.filter(note => {
 			return +year === parseDDBYear(note.date)

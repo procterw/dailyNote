@@ -21,7 +21,6 @@ function rootReducer(state = initialState, action) {
   switch(action.type) {
 
     case "FACEBOOK_RESPONSE":
-      console.log(action)
       return Object.assign({}, state, {
         accessToken: action.response.accessToken,
         name: action.response.name,

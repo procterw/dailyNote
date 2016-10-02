@@ -12,11 +12,17 @@ class Month extends React.Component {
 
   render() {
 
-    const month = this.props.month;
+    const month      = this.props.month;
+    const daysOfWeek = ["Su","Mo","Tu","Wd","Th","Fr","Sa"];
 
     return(
       <div className="month">
         <h2>{month.monthString}</h2>
+        <ul className="days-of-week">
+          { daysOfWeek.map(day => {
+            return <li>{day}</li>
+          })}
+        </ul>
         { month.days.map((day,i) => {
           return(
             <Day day={day} key={i}>

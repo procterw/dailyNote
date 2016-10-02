@@ -1,5 +1,7 @@
 import React from 'react';
 
+// import './Calendar.scss';
+
 import Month from '../Month/Month.js';
 
 import { Link } from 'react-router';
@@ -35,9 +37,9 @@ class Calendar extends React.Component {
     const calendar = this.props.calendar;
 
     return (
-      <div>
+      <div className="calendar-component">
         { this.props.activeYear && this.props.activeCalendar ? (
-          <div>
+          <div className="calendar">
             { calendar.map((month,i) => {
               return(
                 <Month month={month} key={i}>

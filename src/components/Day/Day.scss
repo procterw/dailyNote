@@ -2,13 +2,34 @@
   width: 14.28%;
   display: inline-block;
   overflow: hidden;
-  height: 80px;
-  padding: 0 2px;
+  height: 65px;
   box-sizing: border-box;
+  margin-top: -6px;
+  opacity: 0.6;
 
   .content {
-    background: #eee;
+    background: rgb(243,243,243);
     height: 100%;
+    position: relative;
+    border: 2px solid white;
+    box-sizing: border-box;
+
+    .day-of-month {
+      font-size: 12px;
+      font-weight: bold;
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      padding: 0px;
+      margin: 3px;
+      border-radius: 17px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  }
+
+  &:hover {
+    opacity: 1;
   }
 
 }
@@ -44,8 +65,13 @@
 
 .day.has-note {
   .content {
-    background: wheat;
-    color: white;
+    // background: #B3E5FC;
+    // color: white;
+
+    .day-of-month {
+      background: #0288D1;
+      color: white;
+    }
   }
 }
 

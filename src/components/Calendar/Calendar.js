@@ -6,7 +6,9 @@ import Calendar from './CalendarComponent.js';
 import * as actions from './CalendarActions.js';
 
 function mapStateToProps(state) {
-	return state.calendar;
+	return {
+		...state.calendar
+	}
 }
 
 function mapDispatchToProps(dispatch) {
