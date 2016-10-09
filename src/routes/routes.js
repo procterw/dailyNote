@@ -1,6 +1,6 @@
 import React from 'react';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-import { Router, Route, browserHistory, DefaultRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
 
 import App from '../App.js';
 import Wall from '../components/Wall/Wall.js';
@@ -10,8 +10,9 @@ import { requireAuthentication } from '../components/AuthenticatedComponent/Auth
 export default (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
+      <IndexRedirect to="/calendar" />
       <Route path="calendar(/:activeYear)(/:activeCalendar)" component={requireAuthentication(Wall)}/>
-      <Route path="note/:day/:calendar" component={Note}/>
+      <Route path="note/:day/:activeCalendar" component={Note}/>
     </Route>
   </Router>
 );

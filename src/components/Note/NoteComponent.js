@@ -11,11 +11,12 @@ class Note extends React.Component {
 
   componentWillMount() {
     this.props.clearNote();
-    this.props.loadNote(this.props.params.day);
+    this.props.loadNote(this.props.params.day, this.props.params.activeCalendar);
   }
 
   save(content) {
-    this.props.saveNote(JSON.stringify(content), this.props.params.day);
+    this.props.saveNote(JSON.stringify(content),
+      this.props.params.day, this.props.params.activeCalendar);
   }
 
   render() {
@@ -39,7 +40,6 @@ class TextEditor extends React.Component {
       lastSaved: undefined
     };
     this.onChange = (editorState) => {
-      console.log(editorState)
       this.setState({editorState})
       this.save();
     };

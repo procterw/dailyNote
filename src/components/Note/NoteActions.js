@@ -7,7 +7,7 @@ export function clearNote() {
 }
 
 // Make a calendar for the given year
-export function loadNote(date) {
+export function loadNote(date, calendar) {
 
 	return (dispatch, getState) => {
 
@@ -20,11 +20,10 @@ export function loadNote(date) {
 			Payload: JSON.stringify({
 				operation: "get",
 				type: "note",
+				calendar,
 				date
 			})
 		}, (err, response) => {
-			console.log("loaded note")
-			console.log(response)
 			if (err) {
 				console.error(err);
 			} else {
@@ -35,27 +34,4 @@ export function loadNote(date) {
 			}
 		});
 	}
-}
-
-export function saveNote(content, date) {
-
-	return (dispatch, getState) => {
-
-		Lambda({
-			FunctionName: "DailyNote",
-			Payload: JSON.stringify({
-				operation: "put",
-				type: "note",
-				content,
-				date
-			})
-		}, (err, response) => {
-
-			console.log(err, response);
-
-		});
-
-	}
-
-
 }

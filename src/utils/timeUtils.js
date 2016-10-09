@@ -16,10 +16,10 @@ export class Calendar {
 			upper:  quantile(lengths, 0.75)
 		};
 
-		console.log(quantiles)
-
 		this.notes = notes.filter(note => {
 			return +year === parseDDBYear(note.date)
+		}).filter(note => {
+			activeCalendar === note.calendar;
 		});
 
 		this.year = year;
