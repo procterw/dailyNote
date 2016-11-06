@@ -41,20 +41,6 @@ export function loadCalendars() {
 	}
 }
 
-export function loadNotes() {
-
-	return (dispatch, getState) => {
-
-		setTimeout(function() {
-
-			dispatch(setNotes(notes));
-
-			dispatch(buildCalendar());
-
-		}, 1000);
-	}
-}
-
 export function updateYear(year) {
 	return {
 		type: "UPDATE_YEAR",

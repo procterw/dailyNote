@@ -1,7 +1,11 @@
 import React from 'react';
+import createFocusPlugin from 'draft-js-focus-plugin';
 
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw} from 'draft-js';
-// require("./Note.scss");
+require("./Note.scss");
+
+const focusPlugin = createFocusPlugin();
+const plugins = [ focusPlugin ]
 
 class Note extends React.Component {
 
@@ -23,8 +27,8 @@ class Note extends React.Component {
     return (
       <div className="note-component">
         { this.props.noteLoading ? "NOTE LOADING" :
-        <TextEditor editorState={this.props.editorState}
-          save={this.save.bind(this)}/> }
+            <TextEditor editorState={this.props.editorState}
+              save={this.save.bind(this)}/> }
       </div>
     )
   }
@@ -47,7 +51,9 @@ class TextEditor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({editorState: newProps.editorState});
+    this.setState({
+      editorState: newProps.editorState
+    });
   }
 
   save() {
@@ -69,13 +75,26 @@ class TextEditor extends React.Component {
     return false;
   }
 
+  focusEnd() {
+    this.setState({
+      editorState: EditorState.moveFocusToEnd(this.state.editorState)
+    });
+  }
+
   render() {
+
     return (
-      <Editor
-        editorState={this.state.editorState}
-        handleKeyCommand={this.handleKeyCommand}
-        onChange={this.onChange}
-      />
+      <div className="text-editor">
+        <div className="editor">
+          <Editor
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            plugins={plugins}
+            ref="editor"/>
+          <div className="focus-end" onClick={this.focusEnd.bind(this)} />
+        </div>
+      </div>
     );
   }
 

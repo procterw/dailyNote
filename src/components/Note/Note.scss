@@ -1,12 +1,21 @@
 .note-component {
 
-  .DraftEditor-root {
-    width: 80%;
-    display: block;
-    background: #eee;
+  .text-editor {
+    padding: 20px;
+    max-width: 750px;
     margin: 0 auto;
-    min-height: 500px;
-    border: 1px solid #ddd;
-    padding: 10px 20px;
+    font-size: 18px;
+
+    .editor {
+      border: 1px solid #ccc;
+      cursor: text;
+      padding: 20px 25px;
+      letter-spacing: 0.4px;
+
+      .focus-end {
+        height: 250px;
+        width: 100%;
+      }
+    }
   }
 }

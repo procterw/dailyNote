@@ -19,8 +19,10 @@ export class Calendar {
 		this.notes = notes.filter(note => {
 			return +year === parseDDBYear(note.date)
 		}).filter(note => {
-			activeCalendar === note.calendar;
+			return activeCalendar === note.calendar;
 		});
+
+
 
 		this.year = year;
 		this.activeCalendar = activeCalendar;
