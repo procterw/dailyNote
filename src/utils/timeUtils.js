@@ -10,19 +10,30 @@ export class Calendar {
 
 		let lengths = notes.map(note => note.length);
 
-		let quantiles = {
+		const quantiles = {
 			lower: 	quantile(lengths, 0.25),
 			mid: 		quantile(lengths, 0.5),
 			upper:  quantile(lengths, 0.75)
 		};
 
+		const lineMultiplier = 3;
+
 		this.notes = notes.filter(note => {
 			return +year === parseDDBYear(note.date)
 		}).filter(note => {
 			return activeCalendar === note.calendar;
+		}).map(note => {
+			if (note.length < quantiles.lower) {
+				note.nLines = lineMultiplier * 1;
+			} else if (note.length < quantiles.mid) {
+				note.nLines = lineMultiplier * 2;
+			} else if (note.length < quantiles.upper) {
+				note.nLines = lineMultiplier * 3;
+			} else {
+				note.nLines = lineMultiplier * 4;
+			}
+			return note;
 		});
-
-
 
 		this.year = year;
 		this.activeCalendar = activeCalendar;

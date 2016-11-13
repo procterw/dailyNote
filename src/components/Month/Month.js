@@ -20,7 +20,7 @@ class Month extends React.Component {
         <h2>{month.monthString}</h2>
         <ul className="days-of-week">
           { daysOfWeek.map(day => {
-            return <li>{day}</li>
+            return <li key={day}>{day}</li>
           })}
         </ul>
         { month.days.map((day,i) => {
