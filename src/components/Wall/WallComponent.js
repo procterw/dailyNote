@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 import Calendar from '../Calendar/Calendar.js';
 
@@ -15,11 +15,12 @@ class Wall extends React.Component {
 
   componentDidMount() {
 
+    this.props.loadCalendars();
+
     if (this.props.params.activeYear) {
       this.props.updateYear(this.props.params.activeYear);
-      this.props.loadCalendars();
     } else {
-      this.props.history.push('/calendar/2016');
+      browserHistory.push('/calendar/2016');
     }
 
   }

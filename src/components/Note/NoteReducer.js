@@ -6,7 +6,7 @@ import { routerReducer } from 'react-router-redux';
 const initialState = {
 
   editorState: EditorState.createEmpty(),
-  noteLoading: false
+  noteLoading: true
 
 }
 
@@ -20,13 +20,30 @@ export default function noteReducer(state = initialState, action) {
         editorState: EditorState.createEmpty()
       }
 
+    case "SAVE_NOTE_PENDING":
+      return {
+        ...state,
+        noteSaving: true
+      }
+
+    case "SAVE_NOTE_REJECTED":
+      return {
+        ...state,
+        noteSaving: false
+      }
+    case "SAVE_NOTE_FULFILLED":
+      return {
+        ...state,
+        noteSaving: false
+      }
+
     case "LOAD_NOTE_PENDING":
       return {
         ...state,
         noteLoading: true
       };
 
-    case "LOAD_NOTE_RESOLVED":
+    case "LOAD_NOTE_FULFILLED":
       let editorState = action.item ? EditorState.createWithContent(
         convertFromRaw(JSON.parse(action.item.content))
       ) : state.editorState;

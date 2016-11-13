@@ -12,7 +12,7 @@ export default (
     <Route path="/" component={App}>
       <IndexRedirect to="/calendar" />
       <Route path="calendar(/:activeYear)(/:activeCalendar)" component={requireAuthentication(Wall)}/>
-      <Route path="note/:day/:activeCalendar" component={Note}/>
+      <Route path="note/:day/:activeCalendar" component={requireAuthentication(Note)}/>
     </Route>
   </Router>
 );

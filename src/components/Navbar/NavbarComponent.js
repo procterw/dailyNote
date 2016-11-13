@@ -14,23 +14,12 @@ class Navbar extends React.Component {
 
     return(
       <div className="navbar-component">
-
-        { this.props.name ? (
           <div className="right">
             <img className="profile-picture" src={this.props.photoUrl} />
           </div>
-          ) : (
-            <FacebookLogin
-              appId="1359842767364554"
-              autoLoad={true}
-              fields="name,email,picture"
-              callback={this.props.facebookResponse.bind(this)} />
-          )}
-      
       </div>
     )
   }
-
 }
 
 
